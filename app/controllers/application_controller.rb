@@ -7,4 +7,16 @@ class ApplicationController < Sinatra::Base
         set :session_secret, "pingu"
     end
 
+    helpers do
+
+        def logged_in?
+            !!session[:username]
+        end
+
+        def login(username)
+            session[:username] = username
+        end
+
+    end
+
 end
