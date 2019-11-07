@@ -19,10 +19,23 @@ class PenguinsController < ApplicationController
         @penguin.color = params[:color]
         @penguin.headwear = params[:headwear]
         @penguin.clothing = params[:clothing]
+        @penguin.user_id = current_user.id
         if @penguin.save
             redirect '/penguins'
         else
             redirect '/penguins/new'
+        end
+    end
+
+    get '/penguins/:id' do
+        if !logged_in?
+            redirect to '/login'
+        else
+            if @penguin = current_user.penguins.find(params[:id])
+                erb :'penguins/show.html'
+            else
+                redirect '/penguins'
+            end
         end
     end
 
