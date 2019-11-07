@@ -5,3 +5,13 @@
 <%= @penguin.headwear %><br>
 <%= @penguin.clothing %><br>
 </p>
+
+<br>
+<a href="/penguins/<%= @penguin.id %>/edit">Edit Penguin</a>
+<br>
+
+<br>
+<form action="/penguins/<%= @penguin.id %>/delete" method="post">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <input type="submit" name="delete" value="Delete Penguin">
+</form>

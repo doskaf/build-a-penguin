@@ -43,11 +43,30 @@ class PenguinsController < ApplicationController
         if !logged_in?
             redirect '/login'
         else
-            if penguin = current_user.penguins.find(params[:id])
+            if @penguin = current_user.penguins.find(params[:id])
                 erb :'penguins/edit.html'
             else
                 redirect '/penguins'
             end
+        end
+    end
+
+    patch '/penguins/:id' do
+        @penguin = Penguin.find(params[:id])
+        @penguin.update(:name => params[:name], :color => params[:color], :headwear => params[:headwear], :clothing => params[:clothing])
+        @penguin.save
+        redirect "/penguins/#{@penguin.id}"
+    end
+
+    delete '/penguins/:id/delete' do
+        if !logged_in?
+            redirect '/login'
+        else
+            if @penguin = current_user.penguins.find(params[:id])
+                @penguin.delete
+                redirect '/penguins'
+            end
+            #redirect '/penguins'
         end
     end
 
