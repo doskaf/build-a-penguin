@@ -1,7 +1,8 @@
 class PenguinsController < ApplicationController
 
     get '/penguins' do
-        "A list of public penguins"
+        @penguins = Penguin.all
+        erb :'/penguins/index.html'
     end
 
     get '/penguins/new' do
@@ -9,6 +10,19 @@ class PenguinsController < ApplicationController
             redirect '/login'
         else
             erb :'penguins/new.html'
+        end
+    end
+
+    post '/penguins' do
+        @penguin = Penguin.new
+        @penguin.name = params[:name]
+        @penguin.color = params[:color]
+        @penguin.headwear = params[:headwear]
+        @penguin.clothing = params[:clothing]
+        if @penguin.save
+            redirect '/penguins'
+        else
+            redirect '/penguins/new'
         end
     end
 

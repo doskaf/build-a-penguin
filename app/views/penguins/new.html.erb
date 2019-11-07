@@ -1,0 +1,20 @@
+<h1>Create A Penguin</h1>
+
+<%= "Each field must have a value" if @penguin && @penguin.errors.any? %>
+<form action="/penguins" method="POST">
+    <p>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <br>
+    <label for="color">Color:</label><br>
+    <input type="text" id="color" name="color"><br>
+    <br>
+    <label for="headwear">Headwear:</label><br>
+    <input type="text" id="headwear" name="headwear"><br>
+    <br>
+    <label for="clothing">Clothing:</label><br>
+    <input type="text" id="clothing" name="clothing"><br>
+    </p>
+    <br>
+    <input type="submit" value="Submit">
+</form>
