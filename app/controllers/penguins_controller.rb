@@ -28,15 +28,10 @@ class PenguinsController < ApplicationController
     end
 
     get '/penguins/:id' do
-        if !logged_in?
-            redirect to '/login'
-        else
-            if @penguin = current_user.penguins.find(params[:id])
-                erb :'penguins/show.html'
-            else
-                redirect '/penguins'
-            end
-        end
+        authenticate
+        @penguin = Penguin.find_by(id: params[:id])
+        authorize(@penguin)
+        erb :'penguins/show.html'
     end
 
     get '/penguins/:id/edit' do
@@ -52,7 +47,9 @@ class PenguinsController < ApplicationController
     end
 
     patch '/penguins/:id' do
-        @penguin = Penguin.find(params[:id])
+        authenticate
+        @penguin = Penguin.find_by(id: params[:id])
+        authorize(@penguin)
         @penguin.update(:name => params[:name], :color => params[:color], :headwear => params[:headwear], :clothing => params[:clothing])
         @penguin.save
         redirect "/penguins/#{@penguin.id}"

@@ -26,6 +26,16 @@ class ApplicationController < Sinatra::Base
             end
         end
 
+        def authenticate
+            redirect "/login" if !logged_in?
+        end
+
+        def authorize(penguin)
+            redirect "/penguins" if !penguin || (penguin.user != current_user)
+            #redirect "/penguins" if penguin.user != current_user
+        end
+
+
     end
 
 end
