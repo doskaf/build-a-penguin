@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         @user.username = params[:username]
         @user.password = params[:password]
         if @user.save
-            session[:username] = @user.username
+            session[:id] = @user.id
             redirect '/penguins'
         else
             redirect '/signup'

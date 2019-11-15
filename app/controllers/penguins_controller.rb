@@ -1,5 +1,9 @@
 class PenguinsController < ApplicationController
 
+    get '/' do
+        redirect '/penguins'
+    end
+    
     get '/penguins' do
         @penguins = Penguin.all
         erb :'/penguins/index.html'
