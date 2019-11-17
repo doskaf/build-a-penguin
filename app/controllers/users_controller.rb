@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
     get '/signup' do
+        redirect '/penguins' if logged_in?
         erb :'/users/new.html'
     end
 

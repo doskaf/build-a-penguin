@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
 
+    get '/' do
+        erb :"sessions/home.html"
+    end
+    
     get '/login' do
+        redirect '/penguins' if logged_in?
         erb :"sessions/login.html"
     end
 
@@ -11,7 +16,7 @@ class SessionsController < ApplicationController
 
     get '/logout' do
         session.clear
-        redirect '/penguins'
+        redirect '/'
     end
 
 end

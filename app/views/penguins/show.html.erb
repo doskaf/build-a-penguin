@@ -1,10 +1,8 @@
-<h3><%= @penguin.name %></h3>
+<h2><%= @penguin.name %></h2>
 
 <p>
-<%= @penguin.color %><br>
-<%= @penguin.headwear %><br>
-<%= @penguin.clothing %><br>
-</p>
+<h3>Color: <%= @penguin.color %></h3>
+<p><b><%= @penguin.name %></b> is wearing their <b><%= @penguin.headwear %></b> and a <b><%= @penguin.clothing %></b></p>
 
 <br>
 <a href="/penguins/<%= @penguin.id %>/edit">Edit Penguin</a>

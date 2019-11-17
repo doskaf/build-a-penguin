@@ -1,9 +1,5 @@
 class PenguinsController < ApplicationController
 
-    get '/' do
-        redirect '/penguins'
-    end
-    
     get '/penguins' do
         @penguins = Penguin.all
         erb :'/penguins/index.html'
@@ -25,7 +21,7 @@ class PenguinsController < ApplicationController
         @penguin.clothing = params[:clothing]
         @penguin.user_id = current_user.id
         if @penguin.save
-            redirect '/penguins'
+            redirect "/penguins/#{@penguin.id}"
         else
             redirect '/penguins/new'
         end

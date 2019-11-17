@@ -1,10 +1,8 @@
 <% @penguins.each do |penguin| %>
     <p>
-    <h3><%= penguin.name %><br></h3>
-    <%= penguin.color %><br>
-    <br>
-    <%= penguin.headwear %><br>
-    <br>
-    <%= penguin.clothing %><br>
-    </p>
+    <h2><%= penguin.name %><br></h2>
+    <h3>Color: <%= penguin.color %></h3>
+    <p><b><%= penguin.name %></b> is wearing their <b><%= penguin.headwear %></b> and a <b><%= penguin.clothing %></b></p>
+    <a href="/penguins/<%=penguin.id%>">Show Penguin</a>
+    </p><br>
 <% end %>
